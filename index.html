@@ -10,6 +10,12 @@
 			var scroll = {s:$('html, body').scrollTop()};
 
 
+			function nextPage(){
+				var i = $('.page').index($(this).closest('.page'));
+				$('.page').hide().eq(i+1).show();
+				nextScene();
+			}
+
 			function nextScene(){
 				
 
@@ -26,8 +32,11 @@
 				$('.next-button').css({opacity:0}).delay(3000).animate({opacity:1});
 			}
 
-			nextScene();
+			//nextScene();
 			$('.next-button').click(nextScene);
+			$('.next-page').click(nextPage);
+
+			$('.page').hide().eq(0).show();
 			
 		})
 	</script>
@@ -44,9 +53,14 @@
 
 		.deck{
 			width: calc( 16 * 50px );
-			
 			position: relative;
 			margin: 150px auto;
+		}
+
+		.column{
+			width: 800px;
+			margin: auto;
+			padding: 50px 0px;
 		}
 
 		.scene{
@@ -70,6 +84,7 @@
 
 		h2{
 			font-size: 2.5rem;
+			line-height: 1;
 		}
 
 		.next-button{
@@ -123,18 +138,20 @@
 			display: inline-block;
 			width: 15px;
 			height: 15px;
-			background: #FFD966;
+			background-color: #FFD966;
 			padding: 0px;
 			margin: 0px;
 			background-size: 50%;
 			background-position: center;
 			background-repeat: no-repeat;
+			fill: white;
 			
 		}
 
-		.big-four pip:nth-of-type(2){ background:#B5D7A7; }
-		.big-four pip:nth-of-type(3){ background:#A5C2F4; }
-		.big-four pip:nth-of-type(4){ background:#B4A6D5; }
+		.big-four pip:nth-of-type(1){ background-color:#FFD966; }
+		.big-four pip:nth-of-type(2){ background-color:#B5D7A7; }
+		.big-four pip:nth-of-type(3){ background-color:#A5C2F4; }
+		.big-four pip:nth-of-type(4){ background-color:#B4A6D5; }
 
 
 		.big-four.big-attention{
@@ -155,6 +172,7 @@
 			width:40px;
 			height:40px;
 			background-image: url('./helping-hand.svg');
+			background-size: 70%;
 		}
 
 		.copy{
@@ -169,6 +187,12 @@
 			color: gray;
 			text-transform: uppercase;
 			letter-spacing: 0.1rem;
+		}
+
+		p{
+			font-family: 'Poppins', sans-serif;
+			font-size: 1rem;
+			
 		}
 
 		.big-four-header h2, .big-four-header h3{
@@ -208,118 +232,241 @@
 			margin-right: 10px;
 		}
 
+		.big-four-infographic{
+			width: 380px;
+			height: 380px;
+			text-align: center;
+			line-height: 0px;
+			display: inline-block;
+			margin-left: 25px;
+			vertical-align: middle;
+		}
+
+		.big-four-quadrant{
+			width: 48%;
+			height: 48%;
+			background: blue;
+			display: inline-block;
+			line-height: 40px;
+			margin: 1%;
+			background-size: 60%;
+			background-position: center 50px;
+			background-repeat: no-repeat;
+
+		}
+
+		.big-four-quadrant:nth-of-type(1){ background-color:#FFD966; }
+		.big-four-quadrant:nth-of-type(2){ background-color:#B5D7A7; }
+		.big-four-quadrant:nth-of-type(3){ background-color:#A5C2F4; }
+		.big-four-quadrant:nth-of-type(4){ background-color:#B4A6D5; }
 		
+		.big-four-quadrant:nth-of-type(1){ background-image:url('./heart.svg'); }
+		.big-four-quadrant:nth-of-type(2){ background-image:url('./helping-hand.svg'); }
+		.big-four-quadrant:nth-of-type(3){ background-image:url('./heart.svg'); }
+		.big-four-quadrant:nth-of-type(4){ background-image:url('./heart.svg'); }
+
+		
+
+		.column hr{
+			margin: 50px 0px;
+			clear: both;
+		}
+
+		.column button{
+			width: 100%;
+			padding: 20px 50px;
+			box-sizing: border-box;
+			font: inherit;
+			background: #1D4586;
+			color: white;
+			border: none;
+			font-size: 2rem;
+		}
+
+		.header{
+			background: #eee;
+			font-size: 2rem;
+			text-align: center;
+			padding: 20px;
+		}
+
+		body{
+			margin: 0px;
+			padding: 0px;
+		}
+
+		.floater{
+			width: 380px;
+			display: inline-block;
+			vertical-align: middle;
+		}
+
+		.floater.left{
+			margin-right: 20px;
+		}
+
+		.stories{
+			text-align: center;
+		}
+
+		.story{
+			width: 255px;
+			display: inline-block;
+			height: 255px;
+
+			margin: 5px;
+		}
+
+		.story:nth-of-type(1){ background-color:#FFD966; }
+		.story:nth-of-type(2){ background-color:#B5D7A7; }
+		.story:nth-of-type(3){ background-color:#A5C2F4; }
+		.story:nth-of-type(4){ background-color:#B4A6D5; }
 
 	</style>
 </head>
 <body>
 
-	<div class="deck">
-		<div class="next-button"></div>
-		<div class="scene">
-			<div style="padding: 10%;text-align: center;">
-			<h2>Chapter 1</h2>
+	<div class="page">
+		<div class="column">
+			<img src="SIBS_logo.png" style="margin: auto;">
+			<hr>
+			<img class='floater left' src='./hero-image.png'>
+			<div class="floater">
+				<h2>Thrown in<br>the deep-end</h2>
+				
+				<p>Siblings of a person with a disability often describe a mixed experience.</p><p>Many celebrate the lessons in tolerance, compassion, and meaning that it brought to their lives. Others experience confusion and resentment, often lacking the coping skills required to navigate their experiences.</p>
+			</div>
 			
-			<h1>~ Lisa ~</h1>
+				<div style="text-align:center;"><h2>"It made me who I am."</h2> - A person</div>
+				<div style="text-align:center;"><h2>"I was expected to be a parent."</h2> - A person</div>
+				<div style="text-align:center;"><h2>"I sometimes wished he wasn't my brother."</h2> - A person</div>
+			<hr>
+			
+			<div class="floater">
+				<h2>An end to isolation and confusion</h2>
+				<p>With four key strategies, siblings can be better supported to navigate the unique challenges of their lives.</p>
+				<p>Even tiny gestures could make all the difference.</p>
 			</div>
+			<div class="big-four-infographic">
+				<div class="big-four-quadrant">Give Attention</div><div class="big-four-quadrant">Give Support</div><div class="big-four-quadrant">Give Empowerment</div><div class="big-four-quadrant">Give Connection</div>
+			</div>
+			<hr>
+			<div>
+			<h2>Three Little Stories</h2>
+			<p>Through exploring three illustrated stories, we can better understand the unique challenges a sibling might face, how to think differently about our role in their lives, and act in the moments that really matter.</p></div>
+			<div class="stories"><div class="story">Lisa</div><div class="story">Mary</div><div class="story">Pete</div></div>
+			<hr>
+			<button class="next-page">NEXT Chapter 1 - Lisa</button>
 		</div>
+	</div>
+	<div class="page">
+		<div class="deck">
+			<div class="next-button"></div>
+			<div class="scene">
+				<div style="padding: 10%;text-align: center;">
+				<h2>Chapter 1</h2>
+				
+				<h1>~ Lisa ~</h1>
+				</div>
+			</div>
 
-		<div class="scene" style='background-color:#D5A7BD;background-size: 100%;background-image: url(./lisa-face.png)'>
-			<div style="width: 50%;padding:10%;">
-				<p>Lisa loves her netball.</p>
-				<p>She’s just been shooting some goals in the backyard. And now she’s hastily taking her shoes off at the front door. She keeps falling over, leaving her sneakers in a tangled mess. But she’s getting the job done.</p>
-			</div>
-		</div>
-		<div class="scene" style='background-size:100%;background-image: url(./lisa-talking.png)'>
-			<div style="margin-left:30%;width: 50%;padding:10%;">
-				<p>Lisa races into the kitchen and finds her mother, Katherine, helping her brother Andy have something to eat.</p>
-				<p>“Muuuuum… I’m on fire!”</p>
-			</div>
-		</div>
-		<div class="scene" style='background-color:#A5C2F4;background-size:100%;background-position:center bottom;background-image: url(./lisa-mum.png)'>
-			<div style="margin-left:0%;width: 30%;padding:5%;">
-				<p>Katherine doesn’t respond because she is preoccupied with Andy. He is fussing with his food and is very agitated.</p>
-			</div>
-		</div>
-		<div class="scene" style='background-size:100%;background-image: url(./door.png)'>
-			<div style="width: 50%;padding:10%;">
-				<p>Lisa quietly escapes to her room. The door clicks closed behind her.</p>
-			</div>
-		</div>
-		<div class="scene" style='background-color:#FCFFF2;background-size:100%;background-position:center bottom;background-image: url(./mum-look-back.png)'>
-			<div style="padding:10%;width:50%;">
-				<h2>What would you do?</h2>
-				<ul class="options">
-					<li>Get on with it. Life is busy, after all.</li>
-					<li>Slip a love note under the door.</li>
-					<li>Play a game with Lisa.</li>
-				</ul>
-			</div>
-		</div>
-		<div class="scene stretchy" style='background:white;'>
-			<div class="big-four-header">
-			<div class="big-four big-attention"><pip></pip><pip></pip><br><pip></pip><pip></pip></div>
-			<div class="big-four-h">
-			<h3>Give Attention</h3>
-			<h2>Quality Time</h2>
-			</div>
-			</div>
-			<div class="copy">
-				<p>It's not always easy. But spending quality time with your child is essential for their mental and physical health.</p><p>There's some super simple ways to spend time with your child:</p>
-				<ul>
-					<li>Take a few minutes later in the evening</li>
-					<li>Play a game</li>
-					<li>Simply ask about her day</li>
-				</ul>
-				<p>It may sometimes feel like the moment has passed. But it's never too late.</p>
-			</div>
-		</div>
-		<div class="scene" style='background-color:#D5A7BD;background-size: 100%;background-image: url(./lisa-face.png)'>
-			<div style="width: 50%;padding:10%;">
-				<p>There’s a knock on the front door.</p><p>Andy races to answer it.</p><p>It’s Lisa’s friend, Phillipa. She’s come over for a playdate.</p>
-			</div>
-		</div>
-		<div class="scene" style=''>
-			<div style="padding:10%;">
-				<p>Andy grabs her hand and takes her into the loungeroom to show her toy cars. Phillipa is a bit confused and Lisa is embarrassed.</p>
-				<p>"I'm sorry", says Lisa.</p>
-			</div>
-		</div>
-		<div class="scene" style='background-color:#D5A7BD;'>
-			<div style="padding:10%;">
-				<p>Lisa finds Katherine in the kitchen.</p><p>‘Mum, Andy won’t leave Phillipa alone. I wish he wasn’t my brother!’</p>
-			</div>
-		</div><div class="scene" style='background-color:#FCFFF2;background-size:100%;background-position:center bottom;background-image: url(./mum-look-back.png)'>
-			<div style="padding:10%;width:50%;">
-				<h2>What would you say?</h2>
-				<ul class="options">
-					<li>"Lisa, that’s not very nice. He is your brother."</li>
-					<li>"You're in for a smack-bottom young lady!"</li>
-					<li>"How dare you!"</li>
-				</ul>
-			</div>
-		</div>
-		<div class="scene stretchy" style='background:white;'>
-			<div class="big-four-header">
-				<div class="big-four big-support"><pip></pip><pip></pip><br><pip></pip><pip></pip></div>
-				<div class="big-four-h">
-					<h3>Give Support</h3>
-					<h2>Persmission for Feelings</h2>
+			<div class="scene" style='background-color:#D5A7BD;background-size: 100%;background-image: url(./lisa-face.png)'>
+				<div style="width: 50%;padding:10%;">
+					<p>Lisa loves her netball.</p>
+					<p>She’s just been shooting some goals in the backyard. And now she’s hastily taking her shoes off at the front door. She keeps falling over, leaving her sneakers in a tangled mess. But she’s getting the job done.</p>
 				</div>
 			</div>
-			<div class="copy">
-				<p>Siblings need to know they can share difficult feelings such as anger without judgement or blame. Acknowledgement of the struggles experienced can bring direct comfort in the moment, and is sometimes enough to bring emotional relief and reassurance</p>
-			</div>
-			<div class="big-four-header">
-				<div class="big-four big-support"><pip></pip><pip></pip><br><pip></pip><pip></pip></div>
-				<div class="big-four-h">
-					<h3>Give Support</h3>
-					<h2>Provide Information</h2>
+			<div class="scene" style='background-size:100%;background-image: url(./lisa-talking.png)'>
+				<div style="margin-left:30%;width: 50%;padding:10%;">
+					<p>Lisa races into the kitchen and finds her mother, Katherine, helping her brother Andy have something to eat.</p>
+					<p>“Muuuuum… I’m on fire!”</p>
 				</div>
 			</div>
-			<div class="copy">
-				<p>Talking openly about the disability. Allaying children’s fears, and addressing misconceptions.</p>
-				<P>Focus on functional impact rather than label.</p>
+			<div class="scene" style='background-color:#A5C2F4;background-size:100%;background-position:center bottom;background-image: url(./lisa-mum.png)'>
+				<div style="margin-left:0%;width: 30%;padding:5%;">
+					<p>Katherine doesn’t respond because she is preoccupied with Andy. He is fussing with his food and is very agitated.</p>
+				</div>
+			</div>
+			<div class="scene" style='background-size:100%;background-image: url(./door.png)'>
+				<div style="width: 50%;padding:10%;">
+					<p>Lisa quietly escapes to her room. The door clicks closed behind her.</p>
+				</div>
+			</div>
+			<div class="scene" style='background-color:#FCFFF2;background-size:100%;background-position:center bottom;background-image: url(./mum-look-back.png)'>
+				<div style="padding:10%;width:50%;">
+					<h2>What would you do?</h2>
+					<ul class="options">
+						<li>Get on with it. Life is busy, after all.</li>
+						<li>Slip a love note under the door.</li>
+						<li>Play a game with Lisa.</li>
+					</ul>
+				</div>
+			</div>
+			<div class="scene stretchy" style='background:white;'>
+				<div class="big-four-header">
+				<div class="big-four big-attention"><pip></pip><pip></pip><br><pip></pip><pip></pip></div>
+				<div class="big-four-h">
+				<h3>Give Attention</h3>
+				<h2>Quality Time</h2>
+				</div>
+				</div>
+				<div class="copy">
+					<p>It's not always easy. But spending quality time with your child is essential for their mental and physical health.</p><p>There's some super simple ways to spend time with your child:</p>
+					<ul>
+						<li>Take a few minutes later in the evening</li>
+						<li>Play a game</li>
+						<li>Simply ask about her day</li>
+					</ul>
+					<p>It may sometimes feel like the moment has passed. But it's never too late.</p>
+				</div>
+			</div>
+			<div class="scene" style='background-color:#D5A7BD;background-size: 100%;background-image: url(./lisa-face.png)'>
+				<div style="width: 50%;padding:10%;">
+					<p>There’s a knock on the front door.</p><p>Andy races to answer it.</p><p>It’s Lisa’s friend, Phillipa. She’s come over for a playdate.</p>
+				</div>
+			</div>
+			<div class="scene" style=''>
+				<div style="padding:10%;">
+					<p>Andy grabs her hand and takes her into the loungeroom to show her toy cars. Phillipa is a bit confused and Lisa is embarrassed.</p>
+					<p>"I'm sorry", says Lisa.</p>
+				</div>
+			</div>
+			<div class="scene" style='background-color:#D5A7BD;'>
+				<div style="padding:10%;">
+					<p>Lisa finds Katherine in the kitchen.</p><p>‘Mum, Andy won’t leave Phillipa alone. I wish he wasn’t my brother!’</p>
+				</div>
+			</div><div class="scene" style='background-color:#FCFFF2;background-size:100%;background-position:center bottom;background-image: url(./mum-look-back.png)'>
+				<div style="padding:10%;width:50%;">
+					<h2>What would you say?</h2>
+					<ul class="options">
+						<li>"Lisa, that’s not very nice. He is your brother."</li>
+						<li>"You're in for a smack-bottom young lady!"</li>
+						<li>"How dare you!"</li>
+					</ul>
+				</div>
+			</div>
+			<div class="scene stretchy" style='background:white;'>
+				<div class="big-four-header">
+					<div class="big-four big-support"><pip></pip><pip></pip><br><pip></pip><pip></pip></div>
+					<div class="big-four-h">
+						<h3>Give Support</h3>
+						<h2>Permission for Feelings</h2>
+					</div>
+				</div>
+				<div class="copy">
+					<p>Siblings need to know they can share difficult feelings such as anger without judgement or blame. Acknowledgement of the struggles experienced can bring direct comfort in the moment, and is sometimes enough to bring emotional relief and reassurance</p>
+				</div>
+				<div class="big-four-header">
+					<div class="big-four big-support"><pip></pip><pip></pip><br><pip></pip><pip></pip></div>
+					<div class="big-four-h">
+						<h3>Give Support</h3>
+						<h2>Provide Information</h2>
+					</div>
+				</div>
+				<div class="copy">
+					<p>Talking openly about the disability. Allaying children’s fears, and addressing misconceptions.</p>
+					<P>Focus on functional impact rather than label.</p>
+				</div>
 			</div>
 		</div>
 	</div>
