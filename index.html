@@ -30,6 +30,13 @@
 					
 					$('html, body').scrollTop(a);
 				}});
+
+				var hasAudio = $('.scene').eq(iScene).find('audio').length>0;
+
+			
+
+				$('.floating-nav').removeClass('audio-mode');
+				if(hasAudio) $('.floating-nav').addClass('audio-mode');
 				//$('.next-button').css({opacity:0}).delay(3000).animate({opacity:1});
 			}
 
@@ -122,12 +129,13 @@
 
 		.floating-nav{
 			position: absolute;
-			bottom: -40px;
+			bottom: -30px;
 			left: calc(50% - 30px);
 
 			
 			text-align: center;
 		}
+
 
 		
 
@@ -158,13 +166,21 @@
 			background-position: center;
 			background-size: 50%;
 			background-repeat: no-repeat;
+			display: none;
 		}
 
 		.play-button.on{
 			background-color: #FFD966;
 		}
 
+		.floating-nav.audio-mode{
+			bottom: -40px;
+		}
+
 		
+		.floating-nav.audio-mode .play-button{
+			display: block;
+		}
 
 		.next-button{
 			background: #1D4586;
