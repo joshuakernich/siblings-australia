@@ -65,6 +65,21 @@
 				nextScene();
 				setTimeout(doAudio,1000);
 			}
+
+			$('.options li').click(function(){
+				var o = $(this).offset();
+
+				$(this).closest('.options').find('li').hide();
+				$(this).show().offset(o).animate({top:0,left:0});
+				$(this).find('p').show().css({opacity:0}).delay(500).animate({opacity:1});
+				$(this).closest('.options').find('button').show().css({opacity:0}).delay(2000).animate({opacity:1});
+			})
+
+			$('.options .another').click(function(){
+				$(this).closest('.options').find('p').hide();
+				$(this).closest('.options').find('button').hide();
+				$(this).closest('.options').find('li').show();
+			})
 			
 		})
 	</script>
@@ -124,6 +139,18 @@
 			background-position:center bottom;
 			background-color:#fff5ee;
 
+		}
+
+		.scene.remember{
+			height: auto;
+			background: #1d4586;
+			color: white;
+			padding: 50px;
+			box-sizing: border-box;
+		}
+
+		.scene.remember h2{
+			font-weight: normal;
 		}
 
 		h1{
@@ -271,6 +298,8 @@
 			background-size: 70%;
 		}
 
+
+
 		.column p, .copy{
 			font-family: 'Poppins', sans-serif;
 			font-size: 1rem;
@@ -307,8 +336,14 @@
 		}
 
 		.options li{
-			
 			margin-bottom: 10px;
+			display: block;
+			padding-left: 50px;
+			position: relative;
+		}
+
+		.options li p{
+			display: none;
 		}
 
 		.options li:before{
@@ -320,7 +355,34 @@
 			display: inline-block;
 			text-align: center;
 			border-radius: 15px;
-			margin-right: 10px;
+			
+			position: absolute;
+			left: 0px;
+			top: 0px;
+		}
+
+		.options button{
+			display: none;
+			margin-left: 50px;
+			margin-top: 15px;
+			padding: 10px 20px;
+			background: #1D4586;
+			color: white;
+			border: none;
+			font-family: inherit;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+			display: inline-block;
+			cursor: pointer;
+			display: none;
+
+		}
+
+		.options button.another{
+			background: none;
+			color: #1D4586;
+			padding: 10px 20px;
+			margin-left: 0px;
 		}
 
 		.big-four-infographic{
@@ -445,6 +507,36 @@
 			
 		}
 
+		.remembering{
+			font-size: 1.5rem;
+		}
+
+		.remembering:before{
+			content: "";
+			width: 40px;
+			height: 40px;
+			display: inline-block;
+			background: red;
+			margin-right: 20px;
+			vertical-align: middle;
+			background-size: 70%;
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+
+		.remembering.support:before{
+			background-image: url('./helping-hand.svg');
+			
+			background-color:#B5D7A7;
+		}
+
+		.remembering.attention:before{
+			background-image: url('./heart.svg');
+			background-size: 50%;
+			background-color:#FFD966;
+		}
+
+
 	</style>
 </head>
 <body>
@@ -534,11 +626,14 @@
 				<div class="story-copy" style="margin-left: 50%;">
 					<h2>What would you do?</h2>
 					<ul class="options">
-						<li>Get on with it. Life is busy, after all.</li>
-						<li>Slip a love note under the door.</li>
-						<li>Play a game with Lisa.</li>
+						<li>Get on with it. Life is busy, after all.<p>Fair enough. Sometimes that's all we can really expect of ourselves. But paying attention to Lisa's wellbeing is important, too.</p></li>
+						<li>Slip a love note under the door.<p>This is a great start. But there's more connected ways to engage. Lisa really needs quality time.</p></li>
+						<li>Play a game with Lisa.<p>A great idea. Like any child, Lisa needs quality time to thrive.</p></li>
+						<button class="find-out-how">FIND OUT HOW ↓</button><button class="another">TRY ANOTHER ↩</button>
 					</ul>
+					
 				</div>
+
 			</div>
 			<div class="scene stretchy" style='padding-bottom:320px;background-repeat:no-repeat;background-position:center bottom;background-color:#fff5ee;background-image: url("./lisa/1/FRAME 06.png")'>
 				<div class="big-four-header">
@@ -589,7 +684,7 @@
 					<div class="big-four big-support"><pip></pip><pip></pip><br><pip></pip><pip></pip></div>
 					<div class="big-four-h">
 						<h3>Give Support</h3>
-						<h2>Permission for Feelings</h2>
+						<h2>Give permission for feelings</h2>
 					</div>
 				</div>
 				<div class="copy">
@@ -638,7 +733,7 @@
 					<div class="big-four big-support"><pip></pip><pip></pip><br><pip></pip><pip></pip></div>
 					<div class="big-four-h">
 						<h3>Give Empowerment</h3>
-						<h2>Enabling them to pursue interests</h2>
+						<h2>Enable them to pursue interests</h2>
 					</div>
 				</div>
 				<div class="copy">
@@ -692,6 +787,18 @@ Lisa follows slowly behind.</p></div>
 					<p>The family GP recognises Lisa each time she attends the clinic, empathising that attending the GP is a difficult experience. He smiles at her and asks her how school is going and engages in a friendly conversation.</p>
 				</div>
 			
+			</div>
+			<div class="scene remember">
+
+				<h2>Remember...</h2>
+				<h2 class="remembering support">Provide information</h2>
+				<h2 class="remembering support">Give permission for feelings</h2>
+				<h2 class="remembering support">Enable them to pursue interests</h2>
+				<h2 class="remembering attention">Put yourself in their shoes</h2>
+				<h2 class="remembering attention">Give quality time</h2>
+
+				
+
 			</div>
 			</div>
 		</div>
