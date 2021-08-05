@@ -22,7 +22,7 @@
 
 				var sWas = $(document).height()-$(window).innerHeight();
 				scroll.s = $('html, body').scrollTop();
-				
+
 				$('.scene').eq(iScene).show().css({opacity:0}).animate({opacity:1})
 
 				var s = $(document).height()-$(window).innerHeight();
@@ -47,6 +47,7 @@
 
 			//nextScene();
 			$('.next-button').click(nextScene);
+			$('.find-out-how').click(nextScene);
 			$('.next-page').click(nextPage);
 
 			$('.page').show();
