@@ -20,14 +20,17 @@
 				
 				iScene++;
 
-
+				var sWas = $(document).height()-$(window).innerHeight();
+				scroll.s = $('html, body').scrollTop();
+				
 				$('.scene').eq(iScene).show().css({opacity:0}).animate({opacity:1})
 
 				var s = $(document).height()-$(window).innerHeight();
+				var sTo = Math.min(sWas+$(window).innerHeight()-200,s);
+
+
 				
-	
-				$(scroll).stop().animate({s:s},{duration:1000,step:function(a,b,c){
-					
+				$(scroll).stop().animate({s:sTo},{duration:1000,step:function(a,b,c){
 					$('html, body').scrollTop(a);
 				}});
 
@@ -37,7 +40,9 @@
 
 				$('.floating-nav').removeClass('audio-mode');
 				if(hasAudio) $('.floating-nav').addClass('audio-mode');
-				//$('.next-button').css({opacity:0}).delay(3000).animate({opacity:1});
+				
+				$('.next-button').show();
+				if($('.scene').length()<(iScene+1)) $('.next-button').hide();
 			}
 
 			//nextScene();
@@ -184,6 +189,7 @@
 			text-align: center;
 			line-height: 30px;
 			cursor: pointer;
+			display: none;
 		}
 
 		.play-button{
@@ -537,6 +543,23 @@
 			background-color:#FFD966;
 		}
 
+		.scene{
+			display: none;
+		}
+
+		.pullquote{
+			color: gray;
+			padding: 20px 50px;
+			text-align: center;
+
+		}
+
+		.pullquote h2{
+			margin: 0px;
+			padding: 0px;
+			line-height: 1.5;
+		}
+
 
 	</style>
 </head>
@@ -553,9 +576,9 @@
 				<p>Siblings of a person with a disability often describe a mixed experience.</p><p>Many celebrate the lessons in tolerance, compassion, and meaning that it brought to their lives. Others experience confusion and resentment, often lacking the coping skills required to navigate their experiences.</p>
 			</div>
 			
-				<div style="text-align:center;"><h2>"It made me who I am."</h2> - A person</div>
-				<div style="text-align:center;"><h2>"I was expected to be a parent."</h2> - A person</div>
-				<div style="text-align:center;"><h2>"I sometimes wished he wasn't my brother."</h2> - A person</div>
+				<div class="pullquote"><h2>"It made me who I am."</h2> - Jamie, 32</div>
+				<div class="pullquote"><h2>"I was expected to be a parent."</h2> - Lucy, 47</div>
+				<div class="pullquote"><h2>"I sometimes wished he wasn't my brother."</h2> - George, 25</div>
 			<hr>
 			
 			<div class="floater">
@@ -570,8 +593,10 @@
 			<div>
 			<h2>Three Little Stories</h2>
 			<p>Through exploring three illustrated stories, we can better understand the unique challenges a sibling might face, how to think differently about our role in their lives, and act in the moments that really matter.</p></div>
-			<div class="stories"><div class="story">Lisa</div><div class="story">Mary</div><div class="story">Pete</div></div>
-			<hr>
+			<div class="stories">
+				<div class="story" style="background-image: url('./lisa/1/FRAME 02.png');background-repeat:no-repeat;background-size: cover;background-position: 0px 50px;"><h2>Lisa</h2></div><div class="story" style="background-image: url('./lisa/1/FRAME 05.png');background-repeat:no-repeat;background-size: 130%;background-position: 50px bottom;"><h2>Mary</h2></div><div class="story" style="background-image: url('./lisa/3/FRAME 05.png');background-repeat:no-repeat;background-size: 200%;background-position: 50px bottom;"><h2>Pete</h2></div>
+			</div>
+			<br>
 			<button class="next-page">NEXT Chapter 1 - Lisa</button>
 		</div>
 	</div>
@@ -641,7 +666,7 @@
 				<div class="big-four big-attention"><pip></pip><pip></pip><br><pip></pip><pip></pip></div>
 				<div class="big-four-h">
 				<h3>Give Attention</h3>
-				<h2>Five minute check-in</h2>
+				<h2>Try a five minute check-in</h2>
 				</div>
 				</div>
 				<div class="copy">
@@ -653,7 +678,7 @@
 						<li>Simply ask about her day and ask a few questions.</li>
 					</ul>
 					<p>A simple 5 minute check-in may make all the difference in our child's life.</p>
-					<div class="tip-sheet">For more tips on finding quality time, download this PDF.</div>
+					<!--div class="tip-sheet">For more tips on finding quality time, download this PDF.</div-->
 				</div>
 			</div>
 			<div class="scene" style='background-image: url("./lisa/2/FRAME 01.png")'>
@@ -671,10 +696,10 @@
 					<p>“Mum, Andy won’t leave Phillipa alone.” sighs Lisa. “I wish he wasn’t my brother!"</p>
 				</div>
 			</div>
-			<div class="scene" style='background-image: url("./lisa/2/FRAME 04.png")'>
+			<div class="scene" style='background-position:50px 0px;background-image: url("./lisa/2/FRAME 04.png")'>
 				<div class="story-copy">
 					<h2>What would you say?</h2>
-					<ul class="options" style="width: 80%;">
+					<ul class="options">
 						<li>"How dare you say that!"<p>Fair enough. It's easy to be upset in a moment like this. But how might we consider Lisa's perspective?</p></li>
 						<li>"Lisa, that’s not very nice. He is your brother."<p>It's always important to instill good values, and empathy. But how might we consider Lisa's perspective?</p></li>
 						<li>"Yeah. I know it's hard sometimes."<p>This is a great start. It might open up the conversation for more permission for Lisa to express herself.</p></li>
@@ -683,7 +708,7 @@
 					</ul>
 				</div>
 			</div>
-			<div class="scene stretchy" style='padding-bottom:410px;background-image: url("./lisa/2/FRAME 05.png")'>
+			<div class="scene stretchy" style='padding-bottom:300px;background-image: url("./lisa/2/FRAME 05.png")'>
 				<div class="big-four-header">
 					<div class="big-four big-support"><pip></pip><pip></pip><br><pip></pip><pip></pip></div>
 					<div class="big-four-h">
@@ -692,9 +717,15 @@
 					</div>
 				</div>
 				<div class="copy">
-					<p>Siblings need to know they can share difficult feelings such as anger without judgement or blame. Acknowledgement of the struggles experienced can bring direct comfort in the moment, and is sometimes enough to bring emotional relief and reassurance</p>
-					<iframe width="560" height="315" src="https://www.youtube.com/embed/d5Q1CtqWAp4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br><br>
+					<p>It's important that sibling know they can share difficult feelings such as anger without judgement or blame. Acknowledgement of the struggles experienced can bring direct comfort in the moment, and is sometimes enough to bring emotional relief and reassurance.</p>
+					<p>You may need to prompt them to open up, saying something like:</p>
+					<li>"It must be tricky being the sister to Andy sometimes."</li>
+					<p>Or debrief after a challenging situation by being open:</p>
+					<li>"Well, that was the pits."</li>
+					<li>"This is really hard sometimes, isn't it?"</li>
+					<!--iframe width="560" height="315" src="https://www.youtube.com/embed/d5Q1CtqWAp4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe><br><br-->
 				</div>
+				<!--br>
 				<div class="big-four-header">
 					<div class="big-four big-support"><pip></pip><pip></pip><br><pip></pip><pip></pip></div>
 					<div class="big-four-h">
@@ -706,7 +737,7 @@
 					<p>Talking openly about the disability. Allaying children’s fears, and addressing misconceptions.</p>
 					<P>Focus on functional impact rather than label.</p>
 					<div class="tip-sheet article">ARTICLE: She can’t help it: What would have helped my sibling relationsip.</div>
-				</div>
+				</div-->
 			</div>
 			<div class="scene" style='background-image: url("./lisa/3/FRAME 01.png")'>
 				<div class="story-copy" style="margin-left: 30%;">
@@ -727,21 +758,38 @@
 			<div class="scene" style='background-image: url("./lisa/3/FRAME 04.png")'>
 				<div class="story-copy" style="margin-left: 50%;">
 					<h2>What would you do?</h2>
+					<ul class="options">
+						<li>Carry on with yard duty.<p>Fair enough. We may not really have time for much else. But how might we consider what Lisa needs?</p></li>
+						<li>Comfort Lisa on her challenges.<p>Good idea. Though, this may be an opporunity to offer more practical support.</p></li>
+						<li>Offer to drive Lisa yourself.<p>Commendable, but potentially a difficult promise to make. It could be worth investigating what else could help Lisa.</p></li>
+						<button class="find-out-how">DIG DEEPER ↓</button><button class="another">TRY ANOTHER ↩</button>
+					</ul>
 				</div>
 			</div>
 			
 
-			<div class="scene stretchy" style='background-image: url("./lisa/3/FRAME 05.png")'>
+			<div class="scene stretchy" style='padding-bottom:290px;background-image: url("./lisa/3/FRAME 05.png")'>
 				
 				<div class="big-four-header">
 					<div class="big-four big-support"><pip></pip><pip></pip><br><pip></pip><pip></pip></div>
 					<div class="big-four-h">
 						<h3>Give Empowerment</h3>
-						<h2>Enable them to pursue interests</h2>
+						<h2>Go the extra mile for a smile</h2>
 					</div>
 				</div>
 				<div class="copy">
-					<p>Lisa’s teacher recognises the importance of Lisa having her own interests and connecting with her peers and the community. The teacher Lisa’s mother with some Mums from the team to arrange car pooling to get Lisa to the games on Saturdays.</p>
+					<p>It's important for children to be empowered to pursue their own interests and connect with peers and the community. This means:</p>
+					<ol>
+						<li>Knowing the child in order to know their interests – through strong relationships</li>
+						<li>Committing to enabling them to pursue their own interests</li>
+					</ol>
+					<p>This might look like:</p>
+					<ul>
+						<li>Open communciation between parents, and other adults in child's life</li>
+						<li>Addressing and overcoming barriers to siblings pursuing their own interests</li>
+						<li>Looking for practical soliutions (carpooling, flexibility in scheduling etc.)</li>
+					</ul>
+					<p>Remember, that even small experiences in a child's life can have a big impact on their long term sense of safety, interdependence, and connection.</p>
 				</div>
 			</div>
 			<div class="scene" style='background-image: url("./lisa/4/FRAME 01.png")'>
@@ -776,9 +824,17 @@ Lisa follows slowly behind.</p></div>
 				<p>Lisa’s head drops to one side before her eyes suddenly jolt open. She shakes her head and drags herself after Katherine and Andy.</p></div>
 			</div>
 			<div class="scene" style='background-image: url("./lisa/4/FRAME 07.png")'>
-				<div class="story-copy"><h2>What would you do?</h2></div>
+				<div class="story-copy">
+					<h2>What would you do?</h2>
+					<ul class="options">
+						<li>Stare blankly into space.<p>Fair enough. We may not really have time for much else. But how might we consider what Lisa needs?</p></li>
+						<li>Give Lisa some stimulants to keep her awake.<p>Oh my. That was quick. Maybe we should focus on what else Lisa needs.</p></li>
+						<li>Give Lisa some sleeping pills to help her sleep.<p>Oh my. That was quick. Maybe we should focus on what else Lisa needs.</p></li>
+						<button class="find-out-how">DIG DEEPER ↓</button><button class="another">TRY ANOTHER ↩</button>
+					</ul>
+				</div>
 			</div>
-			<div class="scene stretchy" style='background-image: url("./lisa/4/FRAME 08.png")'>
+			<div class="scene stretchy" style='padding-bottom:280px;background-image: url("./lisa/4/FRAME 08.png")'>
 
 				<div class="big-four-header">
 					<div class="big-four big-attention"><pip></pip><pip></pip><br><pip></pip><pip></pip></div>
@@ -788,20 +844,23 @@ Lisa follows slowly behind.</p></div>
 					</div>
 				</div>
 				<div class="copy">
-					<p>The family GP recognises Lisa each time she attends the clinic, empathising that attending the GP is a difficult experience. He smiles at her and asks her how school is going and engages in a friendly conversation.</p>
+					<p>It's often handy to think about how your words and actions might be felt by a child. Too often, they can feel like they're the less important sibling.</p>
+					<p>If we don’t actively empathise, there will certainly be things we will miss.</p>
+					<p>We might ask ourselves:</p>
+					<li>How might this seem unfair or confusing to a young child?</li>
+					<li>How might they feel about this situation?</li>
+					<li>What small action could I make to make them feel included?</li>
+					<li>What small action could I make to make them feel important?</li>
 				</div>
 			
 			</div>
 			<div class="scene remember">
 
 				<h2>Remember...</h2>
-				<h2 class="remembering support">Provide information</h2>
-				<h2 class="remembering support">Give permission for feelings</h2>
-				<h2 class="remembering support">Enable them to pursue interests</h2>
+				<h2 class="remembering support">Try a 5 minute check-in</h2>
+				<h2 class="remembering support">Give permission</h2>
+				<h2 class="remembering support">Go the extra mile for a smile</h2>
 				<h2 class="remembering attention">Put yourself in their shoes</h2>
-				<h2 class="remembering attention">Give quality time</h2>
-
-				
 
 			</div>
 			</div>
